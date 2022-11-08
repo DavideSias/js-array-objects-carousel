@@ -108,6 +108,7 @@ eleBtnDown.addEventListener('click', goForward);
 eleBtnUp.addEventListener('click', goBack);
 
 let autoplayForward;
+autoplayForward = setInterval(goForward, 3000);
 let autoplayBack;
 
 function startAutoPlay (){
