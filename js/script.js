@@ -35,6 +35,27 @@ const eleBtnStop = document.querySelector('.btn-stop');
 const eleBtnStart = document.querySelector('.btn-start');
 const eleBtnReverse = document.querySelector('.btn-reverse');
 
+function startAutoPlay (){
+    if(!autoplayForward){
+        autoplayForward = setInterval(goForward, 3000);
+    }
+}
+
+function stopAutoPlay(){
+    clearInterval(autoplayForward);
+    clearInterval(autoplayBack);
+    autoplayForward = null;
+    autoplayBack = null;
+}
+
+function startAutoPlayBack (){
+    if(!autoplayBack){
+        autoplayBack = setInterval(goBack, 3000);
+        clearInterval(autoplayForward);
+    }
+}
+
+
 
 for (let i = 0; i < arrImages.length; i++) {
 	const eleImg = document.createElement('img');
@@ -108,28 +129,9 @@ eleBtnDown.addEventListener('click', goForward);
 eleBtnUp.addEventListener('click', goBack);
 
 let autoplayForward;
-autoplayForward = setInterval(goForward, 3000);
+autoplayForward = setInterval (goForward, 3000);
 let autoplayBack;
 
-function startAutoPlay (){
-    if(!autoplayForward){
-        autoplayForward = setInterval(goForward, 3000);
-    }
-}
-
-function stopAutoPlay(){
-    clearInterval(autoplayForward);
-    clearInterval(autoplayBack);
-    autoplayForward = null;
-    autoplayBack = null;
-}
-
-function startAutoPlayBack (){
-    if(!autoplayBack){
-        autoplayBack = setInterval(goBack, 3000);
-        clearInterval(autoplayForward);
-    }
-}
 
 eleBtnStart.addEventListener('click', startAutoPlay);
 eleBtnStop.addEventListener('click', stopAutoPlay);
