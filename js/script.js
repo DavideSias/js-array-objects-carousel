@@ -31,6 +31,9 @@ const eleSlider = document.querySelector('.slider');
 const eleSide = document.querySelector('.side-imgs');
 const eleBtnUp = document.querySelector('.btn-up');
 const eleBtnDown = document.querySelector('.btn-down');
+const eleBtnStop = document.querySelector('.btn-stop');
+const eleBtnStart = document.querySelector('.btn-start');
+const eleBtnReverse = document.querySelector('.btn-reverse');
 
 
 for (let i = 0; i < arrImages.length; i++) {
@@ -104,4 +107,29 @@ eleBtnDown.addEventListener('click', goForward);
 
 eleBtnUp.addEventListener('click', goBack);
 
-const autoplayForward = setInterval(goForward, 3000);
+let autoplayForward;
+let autoplayBack;
+
+function startAutoPlay (){
+    if(!autoplayForward){
+        autoplayForward = setInterval(goForward, 3000);
+    }
+}
+
+function stopAutoPlay(){
+    clearInterval(autoplayForward);
+    clearInterval(autoplayBack);
+    autoplayForward = null;
+    autoplayBack = null;
+}
+
+function startAutoPlayBack (){
+    if(!autoplayBack){
+        autoplayBack = setInterval(goBack, 3000);
+        clearInterval(autoplayForward);
+    }
+}
+
+eleBtnStart.addEventListener('click', startAutoPlay);
+eleBtnStop.addEventListener('click', stopAutoPlay);
+eleBtnReverse.addEventListener('click', startAutoPlayBack);
