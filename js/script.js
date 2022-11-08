@@ -68,8 +68,7 @@ const listEleText = document.querySelectorAll('.text');
 
 let activeIndex = 0;
 
-eleBtnDown.addEventListener('click', function () {
-
+function goForward(){
     listEleImg[activeIndex].classList.remove('active');
     listEleText[activeIndex].classList.remove('active');
     listSideImg[activeIndex].classList.remove('focused');
@@ -82,11 +81,10 @@ eleBtnDown.addEventListener('click', function () {
     listEleImg[activeIndex].classList.add('active');
     listEleText[activeIndex].classList.add('active');
     listSideImg[activeIndex].classList.add('focused');
+}
+
+function goBack(){
     
-});
-
-eleBtnUp.addEventListener('click', function () {
-
 	listEleImg[activeIndex].classList.remove('active');
     listEleText[activeIndex].classList.remove('active');
     listSideImg[activeIndex].classList.remove('focused');
@@ -100,5 +98,10 @@ eleBtnUp.addEventListener('click', function () {
 	listEleImg[activeIndex].classList.add('active');
     listEleText[activeIndex].classList.add('active');
     listSideImg[activeIndex].classList.add('focused');
+}
 
-});
+eleBtnDown.addEventListener('click', goForward);
+
+eleBtnUp.addEventListener('click', goBack);
+
+const autoplayForward = setInterval(goForward, 3000);
